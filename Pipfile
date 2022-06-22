@@ -5,6 +5,9 @@ name = "pypi"
 
 [packages]
 django = "==2.2.4"
+python-decouple = "*"
+psycopg2 = "*"
+pillow = "*"
 
 [dev-packages]
 
