@@ -8,6 +8,10 @@ django = "==2.2.4"
 python-decouple = "*"
 psycopg2 = "*"
 pillow = "*"
+keras = "*"
+tensorflow = "*"
+gunicorn = "*"
+whitenoise = "*"
 
 [dev-packages]
 
