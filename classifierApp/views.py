@@ -15,7 +15,7 @@ import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
 img_height, img_width = 256, 256
-with open('../models/labels.json', 'r') as f:
+with open('./models/labels.json', 'r') as f:
   labelInfo = f.read()
 
 labelInfo = json.loads(labelInfo)
@@ -27,7 +27,7 @@ with model_graph.as_default():
     tf_session = tf.compat.v1.Session()
 
     with tf_session.as_default():
-        model=load_model('../models/model.h5')
+        model=load_model('./models/model.h5')
 
 
 # Create your views here.
