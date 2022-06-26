@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content%}
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+      <img src="{% static 'images/headerimage.png' %}" alt="headerimg">
+    </div>
+    <div class="col-sm-6">
+      <p>WANT TO SEE YOUR 
+        CARD GET CLASSIFIED 
+        AS EITHER AN 
+        ID CARD OR PASSPORT??</p>
+        <p>Uses a CNN image classification model</p>
+        <button class="btn btn-lg"> UPLOAD IMAGE</button>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-4">
+      <p><img src="{% static 'images/passport.png' %}"> passport??</p>
+    </div>
+    <div class="col-sm-4">
+      <p><img src="{% static 'images/arrow.png' %}"></p>
+    </div>
+    <div class="col-sm-4">
+      <p><img src="{% static 'images/driver.png' %}"> driving license??</p>
+    </div>
+  </div>
+</div>
+{% endblock %}
