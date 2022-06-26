@@ -14,7 +14,7 @@ import numpy as np
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
-img_height, img_width = 256, 256
+img_height, img_width = 180, 180
 with open('./models/labels.json', 'r') as f:
   labelInfo = f.read()
 
@@ -35,54 +35,72 @@ def index(request):
   return render(request, 'index.html')
 
 def predictImage(request):
-    # print(request)
-    # print(request.POST.dict())
+    # # print(request)
+    # # print(request.POST.dict())
 
-    try:
+    # try:
 
-        fileObj = request.FILES['filePath']
-        fs = FileSystemStorage()
+    #     fileObj = request.FILES['filePath']
+    #     fs = FileSystemStorage()
 
-        filePathName = fs.save(fileObj.name, fileObj)
-        filePathName = fs.url(filePathName)
-        testimage = '.'+filePathName
-        # print(testimage)
-        # print(filePathName)
+    #     filePathName = fs.save(fileObj.name, fileObj)
+    #     filePathName = fs.url(filePathName)
+    #     testimage = '.'+filePathName
+    #     # print(testimage)
+    #     # print(filePathName)
 
-        # print(type(testimage))
+    #     # print(type(testimage))
 
-        # if '%20' in testimage:
-        #     testimage = fileObj.replace("%20", ' ')
-        #     print(testimage)
+    #     # if '%20' in testimage:
+    #     #     testimage = fileObj.replace("%20", ' ')
+    #     #     print(testimage)
 
-        img = image.load_img(testimage, target_size=(img_height, img_width))
-        test_image = image.img_to_array(img)
-        test_image = np.expand_dims(test_image, axis = 0)
+    #     img = image.load_img(testimage, target_size=(img_height, img_width))
+    #     test_image = image.img_to_array(img)
+    #     test_image = np.expand_dims(test_image, axis = 0)
 
-        confidence = 0
-        with model_graph.as_default():
-            with tf_session.as_default():
-                pred = model.predict(test_image)
-                # print(pred)
-                confidence = round(np.max(pred) * 100, 2)
+    #     confidence = 0
+    #     with model_graph.as_default():
+    #         with tf_session.as_default():
+    #             pred = model.predict(test_image)
+    #             # print(pred)
+    #             confidence = round(np.max(pred) * 100, 2)
 
-        predictedLabel = labelInfo[str(np.argmax(pred[0]))]
-        print('Predicted label: ', predictedLabel)  
-        print(f'Confidence : {confidence}%')    
+    #     predictedLabel = labelInfo[str(np.argmax(pred[0]))]
+    #     print('Predicted label: ', predictedLabel)  
+    #     print(f'Confidence : {confidence}%')    
 
 
 
-        filename = filePathName.split('/')[-1]
-        print(filename)
+    #     filename = filePathName.split('/')[-1]
+    #     print(filename)
 
-        new_item = Result(imagepath = filePathName , image = filename, predicted = predictedLabel, confidence = confidence)
-        new_item.save()
+    #     new_item = Result(imagepath = filePathName , image = filename, predicted = predictedLabel, confidence = confidence)
+    #     new_item.save()
 
-        context = {'filePathName':filePathName, 'predictedLabel': predictedLabel, 'confidence': confidence, 'filename': filename}
-        return render(request, 'index.html', context)
+    #     context = {'filePathName':filePathName, 'predictedLabel': predictedLabel, 'confidence': confidence, 'filename': filename}
+    #     return render(request, 'index.html', context)
 
-    except:
-        return render(request, 'index.html')
+    # except:
+    #     return render(request, 'index.html')
+    fileObj=request.FILES['filePath']
+    fs=FileSystemStorage()
+    filePathName=fs.save(fileObj.name,fileObj)
+    filePathName=fs.url(filePathName)
+    testimage='.'+filePathName
+    img = image.load_img(testimage, target_size=(img_height, img_width))
+    x = image.img_to_array(img)
+    x=x/255
+    x=x.reshape(1,img_height, img_width,3)
+    with model_graph.as_default():
+        with tf_session.as_default():
+            predi=model.predict(x)
+
+    import numpy as np
+    predictedLabel=labelInfo[str(np.argmax(predi[0]))]
+
+    context={'filePathName':filePathName,'predictedLabel':predictedLabel}
+    return render(request,'index.html',context) 
 
 
 def viewDataBase(request):

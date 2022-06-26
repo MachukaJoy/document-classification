@@ -7,7 +7,7 @@ app_name = 'classifierApp'
 
 urlpatterns = [
     path('', views.index, name='homepage'),
-    path('predict', views.predictImage, name='predict'),
+    path('predictImage', views.predictImage, name='predict'),
     path('viewdb', views.viewDataBase, name='view'),
 ]
 
