@@ -35,54 +35,7 @@ def index(request):
   return render(request, 'index.html')
 
 def predictImage(request):
-    # # print(request)
-    # # print(request.POST.dict())
-
-    # try:
-
-    #     fileObj = request.FILES['filePath']
-    #     fs = FileSystemStorage()
-
-    #     filePathName = fs.save(fileObj.name, fileObj)
-    #     filePathName = fs.url(filePathName)
-    #     testimage = '.'+filePathName
-    #     # print(testimage)
-    #     # print(filePathName)
-
-    #     # print(type(testimage))
-
-    #     # if '%20' in testimage:
-    #     #     testimage = fileObj.replace("%20", ' ')
-    #     #     print(testimage)
-
-    #     img = image.load_img(testimage, target_size=(img_height, img_width))
-    #     test_image = image.img_to_array(img)
-    #     test_image = np.expand_dims(test_image, axis = 0)
-
-    #     confidence = 0
-    #     with model_graph.as_default():
-    #         with tf_session.as_default():
-    #             pred = model.predict(test_image)
-    #             # print(pred)
-    #             confidence = round(np.max(pred) * 100, 2)
-
-    #     predictedLabel = labelInfo[str(np.argmax(pred[0]))]
-    #     print('Predicted label: ', predictedLabel)  
-    #     print(f'Confidence : {confidence}%')    
-
-
-
-    #     filename = filePathName.split('/')[-1]
-    #     print(filename)
-
-    #     new_item = Result(imagepath = filePathName , image = filename, predicted = predictedLabel, confidence = confidence)
-    #     new_item.save()
-
-    #     context = {'filePathName':filePathName, 'predictedLabel': predictedLabel, 'confidence': confidence, 'filename': filename}
-    #     return render(request, 'index.html', context)
-
-    # except:
-    #     return render(request, 'index.html')
+    
     fileObj=request.FILES['filePath']
     fs=FileSystemStorage()
     filePathName=fs.save(fileObj.name,fileObj)
@@ -104,13 +57,8 @@ def predictImage(request):
 
 
 def viewDataBase(request):
-    all_results = Result.objects.all()
-
-    for i in all_results:
-        print(i.imagepath)
-        break
-
-    # listOfImages = os.listdir('./media/')
-    # listOfImagesPath = ['./media/' + i for i in listOfImages]
-    context = { 'all_results':all_results}  #  'listOfImagesPath': listOfImagesPath,
-    return render(request, 'viewDB.html', context)
+    import os
+    listOfImages=os.listdir('./media/')
+    listOfImagesPath=['./media/'+i for i in listOfImages]
+    context={'listOfImagesPath':listOfImagesPath}
+    return render(request,'viewDB.html',context) 
