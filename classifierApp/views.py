@@ -32,7 +32,8 @@ with model_graph.as_default():
 
 # Create your views here.
 def index(request):
-  return render(request, 'index.html')
+  context={'a':1}
+  return render(request, 'index.html',context)
 
 def predictImage(request):
     

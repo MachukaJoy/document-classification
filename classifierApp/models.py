@@ -5,6 +5,7 @@ from django.utils import timezone
 
 # Create your models here.
 class Result(models.Model):
+  id = models.AutoField(primary_key=True)
   imagepath = models.TimeField()
   image = models.ImageField(null=True, blank=True)
   predicted = models.TextField()

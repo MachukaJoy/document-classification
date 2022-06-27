@@ -4,16 +4,17 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-django = "==2.2.4"
+django = "*"
 python-decouple = "*"
-psycopg2 = "*"
+django-bootstrap4 = "*"
+djangorestframework = "*"
 pillow = "*"
+dj-database-url = "*"
+psycopg2 = "*"
+whitenoise = "*"
 keras = "*"
 tensorflow = "*"
-gunicorn = "*"
-whitenoise = "*"
-django-bootstrap4 = "*"
-django-fontawesome-5 = "*"
+numpy = "*"
 
 [dev-packages]
 
