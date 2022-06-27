@@ -5,31 +5,28 @@
 {% block content%}
 <div class="container">
   <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-3">
 
     </div>
-    <div class="col-4 d-flex justify-content-center">
+    <div class="col-md-6 justify-content-center" style="color: #FFE4CA;">
 <h2>Upload Image for Classification</h2>
 
 <form method="post" enctype="multipart/form-data" action="predictImage">
 
   {% csrf_token %}
-  <div class="col-md-4 col-sm-4"><label for="fname">Upload Image File Here:</label> </div> 
-  <input name="filePath"
-    type="file"><br><br>
+  <div ><span style="color: #5c3f05; background-color: #FFE4CA;font-weight: bold;"><label for="fname">Upload Image File Here:</label> </span><input name="filePath" type="file"style="padding: 30px;"> </div> 
   <br>
 
+  <input type="submit" value="Submit" style="background-color:#95847C; color:#5e4005; border-radius: 50px; width: 250px; font-size: 20px; font-weight: bold;">
 
-  <input type="submit" value="Submit">
-
-  <h2>The classification of the image is {{predictedLabel}}</h2>
-  <img src={{filePathName}} alt='imagename'>
-  {{filePathName}}
+  <h2>The uploaded image is a <span style="color:#5e4005; background-color: #f8dbcd;" >{{predictedLabel}} </span></h2>
+  <p><img src={{filePathName}}  class="rounded img-thumbnail" width="320px" height="252px" style="border-color:#f8ab05"> {{filePathName}}</p>
+  
 
 </form>
-<br>
+
 </div>
-<div class="col-md-4">
+<div class="col-md-3">
       
 </div>
 </div>
