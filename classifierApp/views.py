@@ -32,8 +32,10 @@ with model_graph.as_default():
 
 # Create your views here.
 def index(request):
-  context={'a':1}
-  return render(request, 'index.html',context)
+  return render(request, 'home.html',)
+
+def imageupload(request):
+  return render(request, 'prediction.html')
 
 def predictImage(request):
     
@@ -54,11 +56,11 @@ def predictImage(request):
     predictedLabel=labelInfo[str(np.argmax(predi[0]))]
 
     context={'filePathName':filePathName,'predictedLabel':predictedLabel}
-    return render(request,'index.html',context) 
+    return render(request,'prediction.html',context) 
 
 
 def viewDataBase(request):
-    import os
+    
     listOfImages=os.listdir('./media/')
     listOfImagesPath=['./media/'+i for i in listOfImages]
     context={'listOfImagesPath':listOfImagesPath}

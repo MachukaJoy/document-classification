@@ -3,21 +3,24 @@
 
 
 {% block content%}
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
 
+    </div>
+    <div class="col-4 d-flex justify-content-center">
 <h2>Upload Image for Classification</h2>
-
-
-<br>
 
 <form method="post" enctype="multipart/form-data" action="predictImage">
 
   {% csrf_token %}
-  <div class="col-md-4 col-sm-4"><label for="fname">Upload Image File Here:</label> </div> <input name="filePath"
+  <div class="col-md-4 col-sm-4"><label for="fname">Upload Image File Here:</label> </div> 
+  <input name="filePath"
     type="file"><br><br>
   <br>
 
 
-  <input type="submit" value="Submit"></div>
+  <input type="submit" value="Submit">
 
   <h2>The classification of the image is {{predictedLabel}}</h2>
   <img src={{filePathName}} alt='imagename'>
@@ -25,6 +28,12 @@
 
 </form>
 <br>
+</div>
+<div class="col-md-4">
+      
+</div>
+</div>
+</div>
 
 
 {% endblock %}

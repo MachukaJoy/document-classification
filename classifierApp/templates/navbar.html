@@ -1,9 +1,12 @@
+{% load bootstrap4 %}
+{% load static %}
+
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark shadow-5-strong">
+<nav class="navbar navbar-expand-lg navbar-dark shadow-5-strong" id="#navbar" >
   <!-- Container wrapper -->
-  <div class="container-fluid">
+  <div class="container-fluid" >
     <!-- Navbar brand -->
-    <a class="navbar-brand" href="index.html">Get Classified</a>
+    <a class="navbar-brand" href="/" style="color:#A66834;font-size: 30px;font-weight: bold; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">Get Classified</a>
 
     <!-- Toggle button -->
     <button
@@ -19,10 +22,10 @@
     </button>
 
     <!-- Collapsible wrapper -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <form class="form-inline my-2 my-lg-0">
-        <a class="nav-link active" aria-current="page" href="/">Home</a>
-        <a href="viewDataBase" class="smoothScroll"><button class="btn my-2 my-sm-0">My Account<img src="{% static 'images/myacc.png' %}" alt="btnimage"></button></a>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+      <form class="form-inline" >
+        <a class="mr-sm-2" aria-current="page" style="color:#A66834; font-size: 30px; font-weight: bold;" href="/">Home</a>
+       <a href="viewDataBase" ><button class="btn" style="background-color:#b81053;opacity: 40%;color:#E3CE10; width: 300px; border-radius: 50px; font-size: 20px; font-weight: bold;">My Account<img src="{% static 'images/myacc.png' %}" alt="btnimage"></button></a>
       </form>
     </div>
     <!-- Collapsible wrapper -->
