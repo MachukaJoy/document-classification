@@ -15,6 +15,7 @@ whitenoise = "*"
 keras = "*"
 tensorflow = "*"
 numpy = "*"
+gunicorn = "*"
 
 [dev-packages]
 
